@@ -1,0 +1,30 @@
+[
+  {
+    "id": 6701,
+    "name": "AN_LXY01",
+    "huntingSkill": "clueless",
+    "tag": "fugiat",
+    "petType": "Cat"
+  },
+  {
+    "id": 6702,
+    "name": "AN_LYX02",
+    "huntingSkill": "aggressive",
+    "petType": "Cat",
+    "tag": "ea"
+  },
+  {
+    "id": 20859021,
+    "name": "AN_WNP0",
+    "huntingSkill": "adventurous",
+    "tag": "nisi",
+    "petType": "Cat"
+  },
+  {
+    "id": 21197073,
+    "name": "AN_ZRD91",
+    "petType": "Cat",
+    "huntingSkill": "clueless",
+    "tag": "quis"
+  }
+]
