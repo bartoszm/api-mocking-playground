@@ -120,7 +120,26 @@ paths:
         - pets
       responses:
         '201':
-          description: Null response
+          description: Created wit response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OneOfPet'
+              examples:
+                cat:
+                  value:
+                    id: 001
+                    name: AN_BBB02
+                    huntingSkill: aggressive
+                    petType: Cat
+                    tag: just created
+                dog:
+                  value:
+                    id: 001
+                    name: wrongName
+                    petType: Dog
+                    packSize: 4
+                    tag: just created
         default:
           description: unexpected error
           content:
@@ -191,6 +210,8 @@ components:
         id:
           type: integer
           format: int64
+          minimum: 1
+          readOnly: true
         name:
           type: string
           pattern: "AN_[A-Z]{3}\\d{1,3}"

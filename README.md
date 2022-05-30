@@ -29,6 +29,7 @@ Indicate example to use
 
 ### Notes
 
+- does not suppport external definitions
 - cannot follow `$ref` in examples
 - does support `example` at schema level
 - does support `examples` at path level
@@ -77,6 +78,13 @@ curl --location --request PUT 'http://localhost:8000/mockserver/openapi' \
 }'
 ```
 
+### Example requests
+
+No data preferences
+
+- `GET http://127.0.0.1:8000/v1/pets`
+- `GET http://127.0.0.1:8000/cats/123`
+
 ### Notes
 
 - loading OAS as configuration parameter does not work in current version (5.13.2)
@@ -84,13 +92,6 @@ curl --location --request PUT 'http://localhost:8000/mockserver/openapi' \
 - limited support for examples, uses single
 - cannot follow `$ref` in examples
 - base support for auto generated response samples
-
-### Example requests
-
-No data preferences
-
-- `GET http://127.0.0.1:8000/v1/pets`
-- `GET http://127.0.0.1:8000/cats/123`
 
 ## Open API mocker
 
