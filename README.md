@@ -1,8 +1,11 @@
 # Mock solutions
 
-A quick tutorial on running docker versions of HTTP mock servers
+A quick tutorial on running docker versions of various HTTP mock servers.
+This page reports on a simple zero-code zero-configuration (or close to that) apporach.
 
 ## API sprout
+
+Link: https://github.com/danielgtaylor/apisprout
 
 ### Run as docker
 
@@ -32,6 +35,8 @@ Indicate example to use
 
 ## Fakeit
 
+Link: https://github.com/JustinFeng/fakeit
+
 ### Run as docker
 
 ```
@@ -52,7 +57,46 @@ No data preferences
 - does support `example` at schema level (with `--use-example` enabled)
 - does not support `examples` at path level
 
+## Mock Server
+
+Link: https://github.com/mock-server/mockserver
+
+### Run as docker
+
+```
+docker run -it --rm -v ${pwd}:/tmp -p 8000:1080 mockserver/mockserver
+```
+
+Additional step to configure OAS is needed after instance is up and running, e.g. using curl
+
+```bash
+curl --location --request PUT 'http://localhost:8000/mockserver/openapi' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+        "specUrlOrPayload": "file:/tmp/petstore-bundled.yaml"
+}'
+```
+
+### Notes
+
+- loading OAS as configuration parameter does not work in current version (5.13.2)
+- loading OAS can be done on runtime using mock server REST API
+- limited support for examples, uses single
+- cannot follow `$ref` in examples
+- base support for auto generated response samples
+
+### Example requests
+
+No data preferences
+
+- `GET http://127.0.0.1:8000/v1/pets`
+- `GET http://127.0.0.1:8000/cats/123`
+
 ## Open API mocker
+
+Link: https://github.com/jormaechea/open-api-mocker
+
+### Run as docker
 
 ```
 docker run -it --rm -v ${pwd}:/tmp -p "8000:5000" jormaechea/open-api-mocker -s "/tmp/petstore.yaml"
@@ -77,6 +121,8 @@ Indicate example to use
 - takes into consideration servers definition when constructing paths
 
 ## Prism
+
+Link: https://github.com/stoplightio/prism
 
 ### Run as docker
 
