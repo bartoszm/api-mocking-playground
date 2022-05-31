@@ -170,6 +170,9 @@ components:
                 - lazy
                 - adventurous
                 - aggressive
+            kind:
+              type: string
+              x-faker: animal.cat
             petType:
               enum: ['Cat']
           required:

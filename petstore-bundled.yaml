@@ -166,6 +166,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OneOfPet'
+            examples:
+              value:
+                id: 007
+                name: AN_EXM_07
+                huntingSkill: lazy
+                petType: Cat
+                tag: mathod example 007
+
         default:
           description: unexpected error
           content:
@@ -193,6 +201,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Cat'
+          example:
+            id: 001
+            name: AN_EXM_01
+            huntingSkill: aggressive
+            petType: Cat
+            tag: mathod example
         default:
           description: unexpected error
           content:
@@ -227,6 +241,7 @@ components:
         - $ref: '#/components/schemas/Dog'
       discriminator:
         propertyName: petType
+      required: [petType]
 
     Cat: ## "Cat" will be used as the discriminator value
       description: A representation of a cat
@@ -243,9 +258,20 @@ components:
                 - adventurous
                 - aggressive
             petType:
+              type: string
               enum: ['Cat']
+            kind:
+              type: string
+              x-faker: animal.cat
           required:
             - huntingSkill
+
+      example:
+        id: 002
+        name: AN_EXM_02
+        huntingSkill: aggressive
+        petType: Cat
+        tag: type example
     Dog: ## "Dog" will be used as the discriminator value
       description: A representation of a dog
       allOf:
@@ -259,6 +285,7 @@ components:
               default: 0
               minimum: 0
             petType:
+              type: string
               enum: ['Dog']
           required:
             - packSize

@@ -187,7 +187,11 @@ components:
                 - adventurous
                 - aggressive
             petType:
+              type: string
               enum: ['Cat']
+            kind:
+              type: string
+              x-faker: animal.cat
           required:
             - huntingSkill
     Dog: ## "Dog" will be used as the discriminator value
@@ -203,6 +207,7 @@ components:
               default: 0
               minimum: 0
             petType:
+              type: string
               enum: ['Dog']
           required:
             - packSize
