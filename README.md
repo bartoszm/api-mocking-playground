@@ -58,6 +58,25 @@ No data preferences
 - does support `example` at schema level (with `--use-example` enabled)
 - does not support `examples` at path level
 
+## Mockintosh
+
+```
+docker run -it -p 8000-8005:8000-8005 -v ${pwd}:/tmp up9inc/mockintosh /tmp/petstore.yaml
+```
+
+```
+docker run -it -p 8000-8005:8000-8005 -v ${pwd}:/tmp up9inc/mockintosh /tmp/petstore-bundled-swagger.yaml
+```
+
+#### Notes
+
+- if you have errors in your API definition forget about starting the mock server
+- port 8000 is for management, mock runs @ 8001
+- `localhost:8000` host an UI that allows for tool configuration
+- some chances to petstore schema were required
+- very basic config from OAS, better for swagger
+- does not support built-in examples
+
 ## Mock Server
 
 Link: https://github.com/mock-server/mockserver

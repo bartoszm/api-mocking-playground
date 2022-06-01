@@ -29,11 +29,6 @@ paths:
       responses:
         '200':
           description: A paged array of pets
-          headers:
-            x-next:
-              description: A link to the next page of responses
-              schema:
-                type: string
           content:
             application/json:
               schema:
@@ -166,13 +161,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OneOfPet'
-            examples:
-              value:
-                id: 007
-                name: AN_EXM_07
-                huntingSkill: lazy
-                petType: Cat
-                tag: mathod example 007
+              examples:
+                anexample:
+                  value:
+                    id: 007
+                    name: AN_EXM07
+                    huntingSkill: lazy
+                    petType: Cat
+                    tag: mathod example 007
 
         default:
           description: unexpected error
@@ -201,12 +197,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Cat'
-          example:
-            id: 001
-            name: AN_EXM_01
-            huntingSkill: aggressive
-            petType: Cat
-            tag: mathod example
+              example:
+                id: 001
+                name: AN_EXM_01
+                huntingSkill: aggressive
+                petType: Cat
+                tag: mathod example
         default:
           description: unexpected error
           content:
@@ -241,7 +237,6 @@ components:
         - $ref: '#/components/schemas/Dog'
       discriminator:
         propertyName: petType
-      required: [petType]
 
     Cat: ## "Cat" will be used as the discriminator value
       description: A representation of a cat
@@ -265,6 +260,7 @@ components:
               x-faker: animal.cat
           required:
             - huntingSkill
+            - petType
 
       example:
         id: 002
@@ -289,6 +285,13 @@ components:
               enum: ['Dog']
           required:
             - packSize
+            - petType
+      example:
+        id: 1111
+        name: AN_CMY11
+        petType: Dog
+        tag: dog dog dog
+        packSize: 4
     Error:
       type: object
       required:

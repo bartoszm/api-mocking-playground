@@ -1,0 +1,252 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "license": {
+      "name": "MIT"
+    },
+    "title": "Swagger Petstore",
+    "version": "1.0.0"
+  },
+
+  "basePath": "/v1",
+  "schemes": ["http"],
+  "paths": {
+    "/cats/{petId}": {
+      "get": {
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "description": "The id of the pet to retrieve",
+            "in": "path",
+            "name": "petId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Cat"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "tags": ["cats", "pets"],
+        "operationId": "showCatById",
+        "summary": "Info for a specific pet"
+      }
+    },
+    "/pets": {
+      "get": {
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "description": "How many items to return at one time (max 100)",
+            "format": "int32",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paged array of pets",
+            "schema": {
+              "$ref": "#/definitions/Pets"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "tags": ["pets"],
+        "operationId": "listPets",
+        "summary": "List all pets"
+      },
+      "post": {
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created wit response",
+            "schema": {
+              "$ref": "#/definitions/Dog"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "tags": ["pets"],
+        "operationId": "createPets",
+        "summary": "Create a pet"
+      }
+    },
+    "/pets/{petId}": {
+      "get": {
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "description": "The id of the pet to retrieve",
+            "in": "path",
+            "name": "petId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "schema": {
+              "$ref": "#/definitions/Dog"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "tags": ["pets"],
+        "operationId": "showPetById",
+        "summary": "Info for a specific pet"
+      }
+    }
+  },
+  "definitions": {
+    "Cat": {
+      "properties": {
+        "id": {
+          "format": "int64",
+          "minimum": 1,
+          "readOnly": true,
+          "type": "integer"
+        },
+        "name": {
+          "pattern": "AN_[A-Z]{3}\\d{1,3}",
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        },
+        "huntingSkill": {
+          "description": "The measured skill for hunting",
+          "enum": ["clueless", "lazy", "adventurous", "aggressive"],
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "x-faker": "animal.cat"
+        },
+        "petType": {
+          "enum": ["Cat"],
+          "type": "string"
+        }
+      },
+      "required": ["id", "name", "huntingSkill", "petType"],
+      "type": "object",
+      "description": "A representation of a cat",
+      "example": {
+        "huntingSkill": "aggressive",
+        "id": 2,
+        "name": "AN_EXM_02",
+        "petType": "Cat",
+        "tag": "type example"
+      }
+    },
+    "Dog": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Pet"
+        },
+        {
+          "properties": {
+            "packSize": {
+              "default": 0,
+              "description": "the size of the pack the dog is from",
+              "format": "int32",
+              "minimum": 0,
+              "type": "integer"
+            },
+            "petType": {
+              "enum": ["Dog"],
+              "type": "string"
+            }
+          },
+          "required": ["packSize", "petType"],
+          "type": "object"
+        }
+      ],
+      "description": "A representation of a dog",
+      "example": {
+        "id": 1111,
+        "name": "AN_CMY11",
+        "packSize": 4,
+        "petType": "Dog",
+        "tag": "dog dog dog"
+      }
+    },
+    "Error": {
+      "properties": {
+        "code": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["code", "message"],
+      "type": "object"
+    },
+    "Pet": {
+      "properties": {
+        "id": {
+          "format": "int64",
+          "minimum": 1,
+          "readOnly": true,
+          "type": "integer"
+        },
+        "name": {
+          "pattern": "AN_[A-Z]{3}\\d{1,3}",
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "name"],
+      "type": "object"
+    },
+    "Pets": {
+      "items": {
+        "$ref": "#/definitions/Dog"
+      },
+      "type": "array"
+    }
+  },
+  "tags": [
+    {
+      "description": "all pets",
+      "name": "pets"
+    },
+    {
+      "description": "cats only",
+      "name": "cats"
+    }
+  ]
+}
