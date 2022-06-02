@@ -201,12 +201,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Cat'
-          example:
-            id: 001
-            name: AN_EXM_01
-            huntingSkill: aggressive
-            petType: Cat
-            tag: mathod example
         default:
           description: unexpected error
           content:
@@ -270,12 +264,6 @@ components:
           required:
             - huntingSkill
 
-      example:
-        id: 002
-        name: AN_EXM_02
-        huntingSkill: aggressive
-        petType: Cat
-        tag: type example
     Dog: ## "Dog" will be used as the discriminator value
       description: A representation of a dog
       allOf:

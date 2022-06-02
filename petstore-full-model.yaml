@@ -211,6 +211,12 @@ components:
               enum: ['Dog']
           required:
             - packSize
+      example:
+        id: 1111
+        name: AN_CMY11
+        petType: Dog
+        tag: dog dog dog
+        packSize: 4
     Error:
       type: object
       required:
